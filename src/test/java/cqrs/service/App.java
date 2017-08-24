@@ -8,6 +8,7 @@ import cqrs.command.handler.UserAddCommandHandler;
 import cqrs.command.handler.UserDeleteCommandHandler;
 import cqrs.core.command.handler.CommandHandlerRegistry;
 import cqrs.core.command.processor.CommandProcessor;
+import cqrs.core.exception.InitiateException;
 import cqrs.core.exception.ValidationException;
 
 public class App {
@@ -15,7 +16,7 @@ public class App {
 	public static void main(String[] args) throws ValidationException, InterruptedException, ExecutionException {
 		try {
 			handlerRegistry();
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (InitiateException e) {
 			e.printStackTrace();
 		}
 		CommandProcessor commandProcessor = new CommandProcessor();
@@ -23,7 +24,7 @@ public class App {
 		commandProcessor.process(new UserDeleteCommand());
 	}
 
-	private static void handlerRegistry() throws InstantiationException, IllegalAccessException {
+	private static void handlerRegistry() throws InitiateException {
 		CommandHandlerRegistry.register(UserAddCommandHandler.class);
 		CommandHandlerRegistry.register(UserDeleteCommandHandler.class);
 	}

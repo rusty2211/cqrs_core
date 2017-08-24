@@ -9,7 +9,7 @@ import java.util.UUID;
  * @author rusty
  *
  */
-public final class EventResult extends cqrs.core.object.Object {
+public final class EventResult extends CQRSObject {
 
 	private static final long serialVersionUID = 1L;
 	private String description;

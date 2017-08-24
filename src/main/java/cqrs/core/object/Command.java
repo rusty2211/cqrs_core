@@ -8,11 +8,11 @@ import java.util.UUID;
  * @author rusty
  *
  */
-public abstract class Command extends cqrs.core.object.Object {
+public abstract class Command extends CQRSObject {
 
 	private static final long serialVersionUID = 1L;
 
-	public abstract void superFicialValidator(cqrs.core.object.Object data);
+	public abstract void superFicialValidator(CQRSObject data);
 
 	public Command() {
 		super(UUID.randomUUID().toString());

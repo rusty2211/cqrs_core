@@ -3,6 +3,7 @@ package cqrs.core.command.handler;
 import java.util.HashMap;
 import java.util.Map;
 
+import cqrs.core.exception.InitiateException;
 import cqrs.core.object.Command;
 
 /**
@@ -19,21 +20,21 @@ public abstract class CommandHandlerRegistry {
 	public static Map<Class<? extends Command>, CommandHandler<? extends Command>> registry = new HashMap<>();
 
 	public static void register(Class<? extends CommandHandler<? extends Command>> commandHandlerClazz)
-			throws InstantiationException, IllegalAccessException {
+			throws InitiateException {
 		if (commandHandlerClazz != null) {
-			CommandHandler<? extends Command> commandHandler = commandHandlerClazz.newInstance();
-			registry.put(commandHandler.getCommandClass(), commandHandler);
+			CommandHandler<? extends Command> commandHandler;
+			try {
+				commandHandler = commandHandlerClazz.newInstance();
+				registry.put(commandHandler.getCommandClass(), commandHandler);
+			} catch (InstantiationException | IllegalAccessException e) {
+				throw new InitiateException(e);
+			}
+
 		}
 	}
 
-	public static <T extends Command> CommandHandler<? extends Command> getHandler(T command)
-			throws InstantiationException, IllegalAccessException {
-		return command != null ? getHandler(command.getClass()) : null;
-	}
-
-	public static <T extends Command> CommandHandler<? extends Command> getHandler(Class<T> command)
-			throws InstantiationException, IllegalAccessException {
-		return getHandlerClass(command);
+	public static <T extends Command> CommandHandler<? extends Command> getHandler(T command) {
+		return getHandlerClass(command.getClass());
 	}
 
 	private static <T extends Command> CommandHandler<? extends Command> getHandlerClass(Class<T> command) {

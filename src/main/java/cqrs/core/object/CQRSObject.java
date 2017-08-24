@@ -13,15 +13,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author rusty
  *
  */
-public class Object implements Serializable {
+public class CQRSObject implements Serializable {
 
 	private static final long serialVersionUID = -2999684812201494508L;
 	private static final ObjectMapper MAPPER = new ObjectMapper();
-	private static final Logger LOGGER = LoggerFactory.getLogger(Object.class.getName());
+	private static final Logger LOGGER = LoggerFactory.getLogger(CQRSObject.class.getName());
 
 	private String id;
 
-	public Object(String id) {
+	public CQRSObject(String id) {
 		this.id = id;
 
 	}

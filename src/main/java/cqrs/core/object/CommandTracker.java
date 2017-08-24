@@ -8,7 +8,7 @@ import java.util.UUID;
  * @author rusty
  *
  */
-public final class CommandTracker extends cqrs.core.object.Object {
+public final class CommandTracker extends CQRSObject {
 	private static final long serialVersionUID = 9012504407082752924L;
 
 	private String aggregateType;// name of the command's class

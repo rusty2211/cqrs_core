@@ -13,7 +13,7 @@ import cqrs.core.event.listener.EventListener;
  * @author rusty
  *
  */
-public abstract class Event extends cqrs.core.object.Object {
+public abstract class Event extends CQRSObject {
 	private static final long serialVersionUID = 686243833737753329L;
 
 	/**

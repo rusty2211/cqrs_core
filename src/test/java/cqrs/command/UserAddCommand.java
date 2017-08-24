@@ -1,5 +1,6 @@
 package cqrs.command;
 
+import cqrs.core.object.CQRSObject;
 import cqrs.core.object.Command;
 
 public class UserAddCommand extends Command {
@@ -17,7 +18,8 @@ public class UserAddCommand extends Command {
 	}
 
 	@Override
-	public void superFicialValidator(cqrs.core.object.Object data) {
+	public void superFicialValidator(CQRSObject data) {
 
 	}
+
 }
